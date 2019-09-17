@@ -10,10 +10,9 @@ Socio *LerVectorSociosdoFicheiro(int *N, const char *fich)
 {
     Socio *S;
     FILE *f;
-
     f = fopen(fich, "r");
     if (f == NULL)
-        return NULL;
+    return NULL;
     S = (Socio *)malloc(sizeof(Socio));
     *N = 0;
     while (!feof(f))
@@ -41,15 +40,27 @@ void EscreverVectorSocios(Socio S[], int *n)
         printf("\n");
     }
 }
+int proposta(Socio *v, int totV, int BIpessoa, int BIProp){
+//1=Sim, 0=Não
+printf("%d", totV);
+return 0;
+
+//falta so desenvolver esta função
+}
 
 void main()
 {
-    int *tam;
+    int *tam, bipessoa, biproponente, resposta;
     Socio *S;
-   // S = (Socio *)malloc(sizeof(Socio));
+    S = (Socio *)malloc(0*sizeof(Socio));
+    printf("Introduza BI pessoa\n");
+    scanf("%d", &bipessoa);
+    printf("Introduza BI proponente");
+    scanf("%d", &biproponente);  
     S = LerVectorSociosdoFicheiro(tam, "/home/dlavareda/Documents/UBI/2019-2020/Estruturas e Algoritmos de Dados/Revisões/socios.txt");
     printf("Foram lidos %d Sócios\n", *tam);
     EscreverVectorSocios(S, tam);
+    resposta = proposta(S, *tam, bipessoa, biproponente);
 }
 
 
