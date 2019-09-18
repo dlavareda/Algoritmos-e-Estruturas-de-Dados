@@ -100,7 +100,7 @@ void main()
     resposta = proposta(S, *tam, bipessoa, biproponente);
     if (resposta == 0)
     {
-        printf("Não encontrado");
+        printf("---------Proponente Não Encontrado-------------\n");
     }
     else if (resposta == 1)
     {
