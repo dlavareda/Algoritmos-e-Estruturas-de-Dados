@@ -67,7 +67,6 @@ int proposta(Socio *v, int totV, int BIpessoa, int BIProp)
             //nao achou direto
             else if (v[i].prop != -1)
             {
-                //return 1;
                 BIpessoa = v[i].prop;
                 i = 0;
                 j++;
