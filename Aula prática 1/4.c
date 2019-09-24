@@ -20,6 +20,7 @@ int totEltsDif(Nodo *L)
         {
             count++;
         }
+        L = L->nseg;
     }
     return count;
 }
