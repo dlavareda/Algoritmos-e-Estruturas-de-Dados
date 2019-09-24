@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct
+typedef struct T
 {
     int ID;
     struct T *nseg;
