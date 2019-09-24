@@ -9,11 +9,9 @@ typedef struct T
 
 int totEltsDif(Nodo *L)
 {
-    int count = 0;
+    int count = 1;
     if (L == NULL)
         return 0;
-    if (L->nseg == NULL)
-        return 1;
     while (L->nseg != NULL)
     {
         if (L->ID != (L->nseg)->ID)
