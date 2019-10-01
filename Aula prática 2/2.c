@@ -22,6 +22,7 @@ Nodo *inverteLista(Nodo *L)
         aux = L;
         aux->nseg = NULL;
         aux->nant = NULL;
+        L = L->nseg;
         R = inserFirst(R, aux);
         return R;
     }
