@@ -8,7 +8,7 @@ typedef struct T
     struct R *nant;
 } Nodo;
 
-Nodo *inserFirst(Nodo *L, Nodo *nv)
+Nodo *insertFirst(Nodo *L, Nodo *nv)
 {
     nv->nseg = L;
     return nv;
@@ -20,10 +20,13 @@ Nodo *inverteLista(Nodo *L)
     while (L != NULL)
     {
         aux = L;
-        aux->nseg = NULL;
-        aux->nant = NULL;
         L = L->nseg;
-        R = inserFirst(R, aux);
-        return R;
+        aux->nseg = NULL;
+        if (L != NULL)
+        {
+            L->nant = NULL;
+        }
+        R = insertFirst(R, aux);
     }
+    return R;
 }
