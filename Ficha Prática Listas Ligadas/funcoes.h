@@ -108,7 +108,7 @@ Nodo *insereElemento(Nodo *L, Nodo *nv, int pos)
 {
     Nodo *aux = L;
     Nodo *R;
-    int count = 1;
+    int count = 0;
     if (pos == 0)
     {
         R = insertfirst(L, nv);
@@ -119,6 +119,7 @@ Nodo *insereElemento(Nodo *L, Nodo *nv, int pos)
         if (count != pos)
         {
             L = L->nseg;
+            count++;
         }
         else
         {
@@ -126,6 +127,7 @@ Nodo *insereElemento(Nodo *L, Nodo *nv, int pos)
             nv->nant = L->nant;
             nv->nseg = L;
             L->nant = nv;
+            break;
         }
     }
     return aux;
@@ -194,7 +196,7 @@ Nodo *copiaLista(Nodo *L)
     }
 }
 //9 - Inverta L colocando o resultado em L2;
-Nodo *inverteLista(Nodo *L)
+Nodo *inverteListaComL2(Nodo *L)
 {
     Nodo *aux, *R;
     while (L != NULL)
@@ -213,13 +215,45 @@ Nodo *inverteLista(Nodo *L)
 //10 - Inverta L colocando o resultado na própria L;
 /*Nodo *inverteLista(Nodo *L)
 {
+    Nodo *aux;
+    L = L->nseg;
+
+    while (L->nseg != NULL)
+    {
+        aux=L->nseg;
+        L->nant->nseg = L->nant->nant;
+        L->nant = NULL;
+        L = aux;
+    }
+    L->nseg = L->nant;
+    L->nant = NULL;
+
+    return L;
 }*/
 //11 - Intercale L1 com a lista L2, gerando a lista L3. Considere que
 // a - L1, L2 estão ordenadas, bem como a lista resultante L3 deverá estar.
-/*Nodo *intercalaLista(Nodo *L1, Nodo *L2)
+Nodo *intercalaLista(Nodo *L1, Nodo *L2)
 {
+    Nodo *nv;
+    Nodo *L3 = NULL;
+    while (L1 != NULL && L2 != NULL)
+    {
+        nv = makenode();
+        nv->ID = L1->ID;
+        nv->nant = NULL;
+        nv->nseg = NULL;
+        L3 = insertlast(L3, nv);
+        nv = makenode();
+        nv->ID = L2->ID;
+        nv->nant = NULL;
+        nv->nseg = NULL;
+        L3 = insertlast(L3, nv);
+        L1 = L1->nseg;
+        L2 = L2->nseg;
+    }
+    return L3;
 }
-*/
+
 // b - L1, L2 não têm ordenação específica, assim como a lista resultante L3.
 /*Nodo *intercalaLista(Nodo *L1, Nodo *L2)
 {
