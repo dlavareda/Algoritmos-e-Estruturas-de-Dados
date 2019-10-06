@@ -232,6 +232,74 @@ Nodo *inverteListaComL2(Nodo *L)
 }*/
 //11 - Intercale L1 com a lista L2, gerando a lista L3. Considere que
 // a - L1, L2 estão ordenadas, bem como a lista resultante L3 deverá estar.
+Nodo *intercalaListaOrdenada(Nodo *L1, Nodo *L2)
+{
+    Nodo *nv;
+    Nodo *L3 = NULL;
+    if (L1->ID <= L2->ID)
+    {
+        nv = makenode();
+        nv->ID = L1->ID;
+        nv->nant = NULL;
+        nv->nseg = NULL;
+        L3 = insertlast(L3, nv);
+        L1 = L1->nseg;
+    }
+    else
+    {
+        nv = makenode();
+        nv->ID = L2->ID;
+        nv->nant = NULL;
+        nv->nseg = NULL;
+        L3 = insertlast(L3, nv);
+        L2 = L2->nseg;
+    }
+    while (L1 != NULL || L2 != NULL)
+    {
+        if (L1 != NULL && L2 != NULL)
+        {
+            if (L1 != NULL && L1->ID >= L3->ID && L1->ID <= L2->ID)
+            {
+                nv = makenode();
+                nv->ID = L1->ID;
+                nv->nant = NULL;
+                nv->nseg = NULL;
+                L3 = insertlast(L3, nv);
+                L1 = L1->nseg;
+            }
+            else if (L2 != NULL)
+            {
+                nv = makenode();
+                nv->ID = L2->ID;
+                nv->nant = NULL;
+                nv->nseg = NULL;
+                L3 = insertlast(L3, nv);
+                L2 = L2->nseg;
+            }
+        }
+        else if (L1 == NULL)
+        {
+            nv = makenode();
+            nv->ID = L2->ID;
+            nv->nant = NULL;
+            nv->nseg = NULL;
+            L3 = insertlast(L3, nv);
+            L2 = L2->nseg;
+        }
+        else if (L2 == NULL)
+        {
+            nv = makenode();
+            nv->ID = L1->ID;
+            nv->nant = NULL;
+            nv->nseg = NULL;
+            L3 = insertlast(L3, nv);
+            L1 = L1->nseg;
+        }
+    }
+    return L3;
+}
+
+// b - L1, L2 não têm ordenação específica, assim como a lista resultante L3.
 Nodo *intercalaLista(Nodo *L1, Nodo *L2)
 {
     Nodo *nv;
@@ -253,18 +321,35 @@ Nodo *intercalaLista(Nodo *L1, Nodo *L2)
     }
     return L3;
 }
-
-// b - L1, L2 não têm ordenação específica, assim como a lista resultante L3.
-/*Nodo *intercalaLista(Nodo *L1, Nodo *L2)
-{
-}
-*/
 //12 - Elimine de L todas as ocorrências de um elemento dado, estando a lista ordenada.
-/*Nodo *intercalaLista(Nodo *L1, int chave)
+Nodo *removeocorrencias(Nodo *L1, int chave)
 {
+    Nodo *aux = L1;
+    //remove o primeiro
+    if (L1->ID == chave)
+    {
+        L1->nseg->nant == NULL;
+        L1 = L1->nseg;
+    }
+    aux = L1;
+    //remove no meio
+    while (L1->nseg != NULL)
+    {
+        if (L1->ID == chave){
+            L1->nant->nseg = L1->nseg;
+            L1->nseg->nant = L1 ->nant;
+        }
+        L1 = L1->nseg;
+    }
+    //remove no fim
+    if(L1->nseg == NULL && L1->ID == chave){
+        L1->nant->nseg = NULL;
+    }
+    return aux;
 }
-*/
 //13 - Assumindo que existe um atributo em “Nodo” que guarda um inteiro positivo (int valor), crie uma função que imprima o elemento que ocorre mais vezes na lista.
-/*void imprimeFrequente(Nodo *L)
+void imprimeFrequente(Nodo *L)
 {
-}*/
+
+    
+}
