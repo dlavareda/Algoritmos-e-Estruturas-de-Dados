@@ -8,21 +8,32 @@ int main()
     Nodo *L1 = NULL, *nv;
     Nodo *L2 = NULL;
     Nodo *L3 = NULL;
-    int count = 0;
+    /*  int count = 0;
     for (int i = 0; i <= 100; i++)
     {
         nv = makenode();
         nv->ID = i;
         L1 = insertlast(L1, nv);
-    }
-    int num;
-printf("Introduza o numero a remover 0-100\n");
-scanf("%d", &num);
-  L1 = removeocorrencias(L1, num);
+    }*/
+    nv = makenode();
+    nv->ID = 1;
+    L1 = insertlast(L1, nv);
+    nv = makenode();
+    nv->ID = 2;
+    L1 = insertlast(L1, nv);
+    nv = makenode();
+    nv->ID = 2;
+    L1 = insertlast(L1, nv);
+    nv = makenode();
+    nv->ID = 5;
+    L1 = insertlast(L1, nv);
+    nv = makenode();
+    nv->ID = 2;
+    L1 = insertlast(L1, nv);
+    nv = makenode();
+    nv->ID = 5;
+    L1 = insertlast(L1, nv);
+    
+    imprimeFrequente(L1);
 
-    while (L1 != NULL)
-    {
-        printf("ID = %d\n", L1->ID);
-        L1 = L1->nseg;
-    }
 }

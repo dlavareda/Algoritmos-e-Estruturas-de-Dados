@@ -335,14 +335,16 @@ Nodo *removeocorrencias(Nodo *L1, int chave)
     //remove no meio
     while (L1->nseg != NULL)
     {
-        if (L1->ID == chave){
+        if (L1->ID == chave)
+        {
             L1->nant->nseg = L1->nseg;
-            L1->nseg->nant = L1 ->nant;
+            L1->nseg->nant = L1->nant;
         }
         L1 = L1->nseg;
     }
     //remove no fim
-    if(L1->nseg == NULL && L1->ID == chave){
+    if (L1->nseg == NULL && L1->ID == chave)
+    {
         L1->nant->nseg = NULL;
     }
     return aux;
@@ -350,6 +352,26 @@ Nodo *removeocorrencias(Nodo *L1, int chave)
 //13 - Assumindo que existe um atributo em “Nodo” que guarda um inteiro positivo (int valor), crie uma função que imprima o elemento que ocorre mais vezes na lista.
 void imprimeFrequente(Nodo *L)
 {
-
-    
+    int max = 0;
+    int maior = 0;
+    int count = 0;
+    Nodo *aux;
+    while (L->nseg != NULL)
+    {
+        aux = L->nseg;
+        while (aux->nseg != NULL)
+        {
+            if (L->ID == aux->ID){
+                count++;
+            }
+            aux = aux->nseg;
+        }
+        if (count>max)
+        {
+            max = count;
+            maior = L->ID;
+        }
+        L = L->nseg;
+    }
+    printf("O numero com mais ocorrencias é: %d", maior);
 }
