@@ -1,0 +1,34 @@
+A seguinte estrutura de dados guarda os resultados relativos à eleição da direcção
+de um determinado clube recreativo. Considere que cada nó representa um eleitor
+(BI), o total de votos que este detém (de acordo com a sua antiguidade) e o BI do
+elemento em quem votou.
+typedef struct ELEICAO{
+int BI; //BI do sócio-votante
+int totVotos; //total de votos que o votante detém
+int BIVoto; //BI do elemento em que o sócio votou
+struct ELEICAO *nseg;
+}Eleicao;
+a. (4 valores) Implemente uma função que verifique se as eleições foram
+fraudulentas, isto é, se existiram elementos que votaram mais que uma vez.
+A função deverá devolver 1 em caso afirmativo ou 0 em caso contrário.
+int fraudulentas(Eleicao* L);
+b. (3 valores) Implemente uma função que conte o total acumulado de votos de
+todos os eleitores.
+int totalVotos(Eleicao* L);
+c. (3 valores) Implemente uma função que devolva a percentagem de votos que
+um determinado elemento teve, em relação ao total calculado na alínea
+anterior.
+float percentagem(Eleicao* L, int BI);
+d. (4 valores) Implemente uma função que devolva o BI do vencedor das
+eleições.
+int vencedor(Eleicao* L);
+
+
+typedef struct ELEICAO
+{
+    int BI;       //BI do sócio-votante
+    int totVotos; //total de votos que o votante detém
+    int BIVoto;   //BI do elemento em que o sócio votou
+    struct ELEICAO *nseg;
+} Eleicao;
+
