@@ -161,7 +161,7 @@ Nodo *divideLista(Nodo *L, Nodo **primeira, Nodo **segunda)
             {
                 if (L->BI == BImenor)
                 {
-                    primeira = insertLast(primeira, L);
+                    *primeira = insertLast(*primeira, L);
                     L->nant->nseg = L->nseg;
                     L->nseg->nant = L->nant;
                 }
@@ -175,7 +175,7 @@ Nodo *divideLista(Nodo *L, Nodo **primeira, Nodo **segunda)
             {
                 if (L->BI == BImenor)
                 {
-                    segunda = insertLast(segunda, L);
+                    *segunda = insertLast(*segunda, L);
                     L->nant->nseg = L->nseg;
                     L->nseg->nant = L->nant;
                 }
