@@ -95,15 +95,33 @@ Nodo *produtoAux(Nodo *L, int x)
     }
     return R;
 }
+Nodo *metezeros(Nodo *L, int n)
+{
+    Nodo *nv;
+
+    return L;
+}
 
 Nodo *produto(Nodo *A, Nodo *B)
 {
-    Nodo *R = NULL, *nv;
-    A = findLast(A);
+    Nodo *R = NULL, *aux, *nv, *aux2;
+    int c = 0, i = 0;
     B = findLast(B);
-    while (A != NULL || B != NULL)
+    while (B != NULL)
     {
-        /* code */
+        aux =clearList(aux);
+        aux = produtoAux(A, B->N);
+        for (i = 0; i < c; i++)
+        {
+            nv = makenode();
+            nv->N = 0;
+            aux = insertlast(aux, nv);
+        }
+        aux2 = R;
+        R = soma(R, aux);
+        aux2 = clearList(aux2);
+        c++;
+        B = B->nant;
     }
 }
 
