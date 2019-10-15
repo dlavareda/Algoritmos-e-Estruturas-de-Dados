@@ -4,7 +4,7 @@
 
 typedef struct NODO
 {
-    int ID; //Identificador do nó;
+    int N; //Identificador do nó;
     //campos associados aos dados da lista
     struct NODO *nseg;
     struct NODO *nant;
