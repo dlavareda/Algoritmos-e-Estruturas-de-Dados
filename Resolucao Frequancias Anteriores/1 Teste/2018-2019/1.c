@@ -129,6 +129,8 @@ int main()
 
     int total = totalServicosPrestados(S, 147258369);
     printf("%d", total);
+    printf("\n");
+    listaPreguicosos(Person, S);
     return 0;
 }
 /*

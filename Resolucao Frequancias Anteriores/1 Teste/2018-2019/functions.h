@@ -152,3 +152,35 @@ Pessoa *getPessoaBI(Pessoa *P, int BI)
         P = P->nseg;
     }
 }
+
+void listaPreguicosos(Pessoa *A, Servico *S)
+{
+    int count = 0;
+    Servico *aux= S;
+    Prestados *Prest = NULL;
+    Pessoa *Person = NULL;
+    while (A != NULL)
+    {
+        count = 0;
+        S = aux;
+        while (S != NULL)
+        {
+            Prest = S->P;
+            while (Prest != NULL)
+            {
+                Person = Prest->person;
+                if (Person->BI == A->BI)
+                {
+                    count++;
+                }
+                Prest = Prest->nseg;
+            }
+            S = S->nseg;
+        }
+        if (count == 0)
+        {
+           printf("%s\n", A->nome);
+        }
+        A = A->nseg;
+    }
+}
