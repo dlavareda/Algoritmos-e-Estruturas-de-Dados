@@ -12,7 +12,7 @@ Nodo *pesquisaListaSalto(Nodo *LS, int c)
     int i;
     if (LS->chave == c)
         return LS;
-
+ 
     for (i = LS->nivel; i >= 0; i--)
     {
         if (LS->nseg[i] == NULL)
@@ -57,6 +57,11 @@ Nodo *findnext(Nodo *LS, int chave, int n)
 }
 Nodo *findPrevious(Nodo *LS, int chave, int n)
 {
+    if (LS == NULL)
+    {
+        return LS;
+    }
+    
     Nodo *aux = findnext(LS, chave, n);
     if (aux == NULL)
     {
@@ -72,6 +77,9 @@ Nodo *inserirListaSalto(Nodo *LS, Nodo *nv)
     {
         p = findPrevious(LS, nv->chave, i);
         n = findnext(LS, nv->chave, i);
+        if (p == NULL && n == NULL){
+            return nv;
+        }
         nv->nseg[i] = n;
         nv->nant[i] = p;
         if (n != NULL)

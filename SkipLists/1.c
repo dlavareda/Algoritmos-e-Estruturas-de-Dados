@@ -7,7 +7,12 @@ int main(){
 
     Nodo *N = NULL;
     Nodo *nv = NULL;
-
     nv = makenode();
-    return 1;
+    nv->chave = 1234;
+    N = inserirListaSalto(N, nv);
+        nv = makenode();
+    nv->chave = 4321;
+    N = inserirListaSalto(N, nv);
+    return 0;
+
 }
