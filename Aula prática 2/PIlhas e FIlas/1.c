@@ -3,7 +3,7 @@
 
 typedef struct NODO
 {
-    int N;
+    int ID;
     int salto;
     struct NODO *nseg[4];
     struct NODO *nant[4];
@@ -18,22 +18,20 @@ int LSBemFormada(Nodo *L)
     int nactual = 0;
     while (aux != NULL)
     {
-        for (int i = salto; i >=0 ; i++)
+        for (int i = L->salto; i >=0 ; i++)
         {
-            while (L != NULL)
-            {
-                L = L->nseg[i];
-                nactual++;
-            }
-            if (nanterior < nactual)
+            L = L->nseg[i];
+            nactual = L->ID - L->nant[i]->ID;
+            if (nactual < nanterior)
             {
                 return 0;
             }
-            L = aux2;
+            
             nanterior = nactual;
         }
+        nactual = 0;
+        nanterior = 0;  
     }
-}
+    return 1;
 
-no salto nivel maior do que no nivel acim
-    a
+}
