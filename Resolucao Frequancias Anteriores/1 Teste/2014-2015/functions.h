@@ -143,3 +143,4 @@ int totalAno(Encontro *E, int ano)
 
     return count;
 }
+
