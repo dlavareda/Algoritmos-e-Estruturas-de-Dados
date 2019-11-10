@@ -133,6 +133,7 @@ Nodo *divideLista(Nodo *L, Nodo **primeira, Nodo **segunda)
     while (L != NULL)
     {
         tamanho++;
+        L=L->nseg;
     }
     tamanho = tamanho / 2; // count numero de elementos na lista 1
     L = aux;
