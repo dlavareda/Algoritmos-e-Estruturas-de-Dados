@@ -177,9 +177,29 @@ Nodo *espelho(Nodo *A)
 
 int bemFormada(Nodo *A)
 { //1 sim 0 não
-	int e, d;
-	if (A->fe->ID > A->ID || A->fd->ID < A->ID)
-		return 0;
-	e = bemFormada(A->fe);
-	d = bemFormada(A->fd);	
+	Nodo *aux;
+	if (A == NULL)
+	{
+		return (1);
+	}
+	aux = maxX(A->fe);
+	if (aux != NULL)
+	{
+		if (aux->Idade > A->Idade)
+		{
+			return 0;
+		}
+	}
+	aux = minX(A->fd);
+	if (aux != NULL)
+	{
+		if (aux->Idade < A->Idade)
+		{
+			return 0;
+		}
+	}
+	return bemFormada(A->fe) && bemFormada(A->fd)
+}
+int repetidos(Nodo *A){
+	
 }
