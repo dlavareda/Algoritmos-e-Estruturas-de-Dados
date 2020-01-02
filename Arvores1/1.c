@@ -198,7 +198,7 @@ int bemFormada(Nodo *A)
 			return 0;
 		}
 	}
-	return bemFormada(A->fe) && bemFormada(A->fd)
+	return bemFormada(A->fe) && bemFormada(A->fd);
 }
 int repetidos(Nodo *A){
 	
