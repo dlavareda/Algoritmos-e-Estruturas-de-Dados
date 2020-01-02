@@ -163,9 +163,7 @@ int igualEstrutura(NodoAB *A1, NodoAB *A2)
     {
         return 1;
     }
-     return 0;
-    
-   // return igualEstrutura(A1->fe, A2->fe) * igualEstrutura(A1->fd, A2->fd);
+    return 0;
 }
 
 void main()
