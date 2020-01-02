@@ -102,28 +102,32 @@ int stock(Produto *A, int cod) // Não funciona em todos os elementos da arvore
 
 1 - erros 0 - ok
 */
-Produto * procuraDesc(Produto *A, char desc[]){// Não funciona em todos os elementos da arvore
+Produto *procuraDesc(Produto *A, char desc[])
+{ // Não funciona em todos os elementos da arvore
     if (A == NULL)
     {
         return;
     }
-    if (strcmp(A->descricao, desc)==0)    {
+    if (strcmp(A->descricao, desc) == 0)
+    {
         return A;
-    }else{
-        if (A->fe!=NULL)
+    }
+    else
+    {
+        if (A->fe != NULL)
         {
             procuraDesc(A->fe, desc);
         }
-        if (A->fd !=NULL)
+        if (A->fd != NULL)
         {
             procuraDesc(A->fd, desc);
         }
-       // return NULL;
-    }    
+        // return NULL;
+    }
 }
 
-int existemErros(Produto *A){
-
+int existemErros(Produto *A)
+{
 }
 void main()
 {
@@ -152,6 +156,6 @@ void main()
     p = procuraDesc(AB, "Caderno");
 
     printf("%p", p);
-    
+
     printf("Pause");
 }
