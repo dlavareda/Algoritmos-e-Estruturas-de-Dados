@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 typedef struct PRODUTO
 {
     int codProduto; //chave de ordenacao
@@ -96,10 +96,38 @@ int stock(Produto *A, int cod) // Não funciona em todos os elementos da arvore
         }
     }
 }
+/*
+1d
 
+
+1 - erros 0 - ok
+*/
+Produto * procuraDesc(Produto *A, char desc[]){// Não funciona em todos os elementos da arvore
+    if (A == NULL)
+    {
+        return;
+    }
+    if (strcmp(A->descricao, desc)==0)    {
+        return A;
+    }else{
+        if (A->fe!=NULL)
+        {
+            procuraDesc(A->fe, desc);
+        }
+        if (A->fd !=NULL)
+        {
+            procuraDesc(A->fd, desc);
+        }
+       // return NULL;
+    }    
+}
+
+int existemErros(Produto *A){
+
+}
 void main()
 {
-    Produto *AB, *nv;
+    Produto *AB = NULL, *nv = NULL;
     nv = makenode(5, "Caderno", 5.4, 3);
     AB = treeInsert(AB, *nv);
     nv = makenode(4, "Caneta", 2, 0);
@@ -120,5 +148,10 @@ void main()
     AB = treeInsert(AB, *nv);
     mostraFaltas(AB);
     printf("%d\n", stock(AB, 6));
+    Produto *p = NULL;
+    p = procuraDesc(AB, "Caderno");
+
+    printf("%p", p);
+    
     printf("Pause");
 }
