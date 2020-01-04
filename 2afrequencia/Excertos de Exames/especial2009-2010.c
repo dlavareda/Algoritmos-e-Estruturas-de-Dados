@@ -167,8 +167,6 @@ int main()
     nv = makenode(6, 1);
     AB = treeInsert(AB, *nv);
     nv = makenode(8, 2);
-    AB = treeInsert(AB, *nv);
-    nv = makenode(0, 2);
     existemAlunos(AB, 2);
     printf("\nMenor = %d\n", minA(AB)->numAluno);
     printf("Maior = %d\n", maxA(AB)->numAluno);
