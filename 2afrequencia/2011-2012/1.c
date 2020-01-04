@@ -51,24 +51,84 @@ ramo da árvore binária (1=sim, 0=não).
 Protótipo: int igualRamo(Nodo* A, Nodo *n1, Nodo *n2);
 //A=raiz, n1,n2=nós a pesquisar
 */
-
+/*
 int igualRamo(Nodo* A, Nodo *n1, Nodo *n2){
     
 }
-void main(){
+*/
+
+/*
+Exercicio de outra frequencia
+*/
+
+int contaCodigosMaiores(NodoAB *A, int cod)
+{
+    if (A == NULL)
+    {
+        return 0;
+    }
+    if (A->id > cod)
+    {
+        return 1 + contaCodigosMaiores(A->fe, cod) + contaCodigosMaiores(A->fd, cod);
+    }
+    return contaCodigosMaiores(A->fe, cod) + contaCodigosMaiores(A->fd, cod);
+}
+/*
+Exercicio de outra frequencia
+*/
+int contaNos2Filhos(NodoAB *A)
+{
+    if (A == NULL)
+    {
+        return 0;
+    }
+    if (A->fe != NULL && A->fd != NULL)
+    {
+        return 1 + contaNos2Filhos(A->fe) + contaNos2Filhos(A->fd);
+    }
+    return contaNos2Filhos(A->fe) + contaNos2Filhos(A->fd);
+}
+
+/*
+Exercicio de outra frequencia
+*/
+void imprimeNaoFolhas(NodoAB *A){
+    if (A == NULL)
+    {
+        return;
+    }
+    if (A->fe == NULL && A->fd == NULL)
+    {
+        return;
+    }
+    imprimeNaoFolhas(A->fe);
+    printf("%d\n", A->id);
+    imprimeNaoFolhas(A->fd);
+    
+    
+}
+void main()
+{
     NodoAB *AB, *nv;
-    nv = makenode(2, "José Andrade");
+    nv = makenode(4, "José Andrade");
     AB = treeInsert(AB, *nv);
     nv = makenode(3, "André Almeida");
     AB = treeInsert(AB, *nv);
-    nv = makenode(4, "André Soares");
+    nv = makenode(1, "André Soares");
     AB = treeInsert(AB, *nv);
-    nv = makenode(1, "Paula Correia");
+    nv = makenode(2, "Paula Correia");
     AB = treeInsert(AB, *nv);
     nv = makenode(5, "Vitor Santos");
     AB = treeInsert(AB, *nv);
     nv = makenode(7, "Hugo Filipe");
     AB = treeInsert(AB, *nv);
-
+    nv = makenode(6, "Hugo Filipe");
+    AB = treeInsert(AB, *nv);
+    nv = makenode(9, "Hugo Filipe");
+    AB = treeInsert(AB, *nv);
+    printf("%d\n", contaCodigosMaiores(AB, 1));
+    printf("%d\n", contaNos2Filhos(AB));
+    printf("Imprime nao folhas\n");
+    imprimeNaoFolhas(AB);
     printf("pause");
 }
