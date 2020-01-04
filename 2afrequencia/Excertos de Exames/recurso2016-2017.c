@@ -3,6 +3,7 @@
 
 typedef struct NODOAB
 {
+{
     int codigo; //id
     char nome[80];
     struct NODOAB *fe, *fd;
