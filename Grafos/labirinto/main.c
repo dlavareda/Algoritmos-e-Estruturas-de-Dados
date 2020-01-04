@@ -131,7 +131,7 @@ Nodo *Dijkstra(Nodo **G, int totV, int vo, int vd)
         menor = 2147483647;
         for (int j = 0; j < totV; j++)
         {
-            if (C[j] < menor && E[j] != 1)
+            if (C[j] < menor && E[j] != 1)   //if (C[j] < menor && E[j] != 1)
             {
                 menor = C[j];
                 IM = j;
