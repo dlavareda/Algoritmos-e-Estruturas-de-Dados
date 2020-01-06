@@ -58,18 +58,12 @@ void mostraClientes(NodoAB *A, int totMinutos)
     {
         return;
     }
-    if (A->fe != NULL)
-    {
-        mostraClientes(A->fe, totMinutos);
-    }
+    mostraClientes(A->fe, totMinutos);
     if (A->totalMinutos > totMinutos)
     {
         printf("%d\n", A->BI);
     }
-    if (A->fd != NULL)
-    {
-        mostraClientes(A->fd, totMinutos);
-    }
+    mostraClientes(A->fd, totMinutos);
 }
 
 /*
@@ -159,7 +153,8 @@ int igualEstrutura(NodoAB *A1, NodoAB *A2)
     else if (!A1->fe && !A2->fe && A1->fd && A2->fd)
     {
         return 1 * igualEstrutura(A1->fd, A2->fd);
-    }else if (!A1->fe && !A2->fe && !A1->fd && !A2->fd)
+    }
+    else if (!A1->fe && !A2->fe && !A1->fd && !A2->fd)
     {
         return 1;
     }
