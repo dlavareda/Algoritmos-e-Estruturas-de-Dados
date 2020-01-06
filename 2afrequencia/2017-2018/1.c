@@ -45,7 +45,7 @@ NodoAB *makenode(int id, char aux[20])
 /*
 2a
 */
-/*
+
 int altura(NodoAB *A)
 {
     int e, d;
@@ -64,7 +64,7 @@ int altura(NodoAB *A)
         return d;
     }
 }
-*/
+
 void imprimeVerticesMenosNPassos(NodoAB *A, int N)
 {
     if (A == NULL)
@@ -181,13 +181,64 @@ int arvoresDisjuntas(NodoAB *A, NodoAB *B)
     {
         return 1;
     }
-    if (findNode(B, A->ID) !=NULL)
+    if (findNode(B, A->ID) != NULL)
     {
         return 0;
-    }else{
+    }
+    else
+    {
         return arvoresDisjuntas(A->fe, B) * arvoresDisjuntas(A->fd, B);
     }
-    
+}
+
+void printNosNivel(NodoAB *A, int nivel)
+{
+    if (A == NULL || nivel < 0)
+    {
+        return;
+    }
+
+    if (altura(A) == nivel)
+    {
+        printf("%s\n", A->aux);
+        return;
+    }
+    else
+    {
+        printNosNivel(A->fe, nivel);
+        printNosNivel(A->fd, nivel);
+    }
+}
+int findNodeNaArvore(NodoAB *AB, NodoAB *item)
+{
+    if (AB == NULL)
+    {
+        return 0;
+    }
+    if (item->ID == AB->ID)
+    {
+        return 1;
+    }
+    if (item->ID < AB->ID)
+    {
+        return 1 + findNodeNaArvore(AB->fe, item);
+    }
+    if (item->ID > AB->ID)
+    {
+        return 1 + findNodeNaArvore(AB->fd, item);
+    }
+}
+int contaFolhas(NodoAB *AB)
+{
+    if (AB == NULL)
+    {
+        return 0;
+    }
+    if (AB->fd == NULL && AB->fe == NULL)
+    {
+        return 1;
+    }
+    return contaFolhas(AB->fe) + contaFolhas(AB->fd);
 }
 int main()
 {
@@ -206,7 +257,7 @@ int main()
     AB = treeInsert(AB, *nv);
     nv = makenode(8, "Bragança");
     AB = treeInsert(AB, *nv);
-    
+
     NodoAB *AB2 = NULL;
     nv = makenode(15, "Paris");
     AB2 = treeInsert(AB2, *nv);
@@ -217,5 +268,14 @@ int main()
     printf("Conta FD =  %d\n", contaFD(AB));
     printf("Existem mais FE do que FD? %d\n", maisFilhosAtivos(AB));
     printf("Arvores disjuntas? %d\n", arvoresDisjuntas(AB, AB2));
+    printNosNivel(AB, 1);
+    /*
+6. Escreva uma função em C que aceite um ponteiro para uma árvore binária e um ponteiro
+para um nó da árvore e retorne o nível do nó na árvore.
+    */
+    NodoAB *item = findNode(AB, 8);
+    printf("Nivel nó = %d\n", findNodeNaArvore(AB, item));
+    printf("Numero de folhas  = %d", contaFolhas(AB));
+
     printf("pause");
 }
