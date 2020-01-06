@@ -35,6 +35,65 @@ Nodo *insertlast(Nodo *L, Nodo *nv)
     return L;
 }
 
+Nodo *Dijkstra(Nodo **G, int totV, int vo, int vd)
+{
+    int menor, IM = 0, n;
+    Nodo *aux;
+    Nodo *L, *nv;
+    int *C = (int *)malloc(totV * sizeof(int));
+    int *E = (int *)malloc(totV * sizeof(int));
+    int *P = (int *)malloc(totV * sizeof(int));
+    for (int i = 0; i < totV; i++)
+    {
+        C[i] = 2147483647;
+        E[i] = 0;
+        P[i] = -1;
+    }
+    C[vd] = 0;
+    for (int i = 0; i < totV; i++)
+    {
+        menor = 2147483647;
+        for (int j = 0; j < totV; j++)
+        {
+            if (C[j] < menor && E[j] != 1) //if (C[j] < menor && E[j] != 1)
+            {
+                menor = C[j];
+                IM = j;
+            }
+            E[IM] = 1;
+            aux = G[IM];
+            while (aux != NULL)
+            {
+                if (C[aux->id] > C[IM] + aux->custo)
+                {
+                    C[aux->id] = C[IM] + aux->custo;
+                    P[aux->id] = IM;
+                }
+                aux = aux->nseg;
+            }
+        }
+    }
+    L = NULL;
+    nv = makenode();
+    nv->id = vo;
+    L = insertlast(L, nv);
+    while (1)
+    {
+        n = P[nv->id];
+        nv = makenode();
+        nv->id = n;
+        L = insertlast(L, nv);
+        if (n == vd)
+        {
+            break;
+        }
+    }
+    free(E);
+    free(P);
+    free(C);
+    return L;
+}
+
 Nodo **constroi_grafo(int n)
 {
     Nodo **g = (Nodo *)malloc(n * n * sizeof(Nodo *));
@@ -129,6 +188,86 @@ int grauEntradaVertice(Nodo **G, int t, int v)
     return count;
 }
 
+int parte(Nodo **G, int tv)
+{
+    int count = 1;
+    Nodo *aux;
+    int *checked = (int *)malloc(tv * sizeof(int));
+    for (int i = 0; i < tv; i++)
+    {
+        checked[i] = -1;
+    }
+
+    for (int i = 0; i < tv; i++)
+    {
+        if (checked[i] == -1)
+        {
+            for (int ii = 0; ii < tv; ii++)
+            {
+                if (checked[ii] == -1)
+                {
+                    aux = Dijkstra(G, tv, i, ii);
+                }
+                if (aux != NULL)
+                {
+                    count++;
+                }
+            }
+            while (aux != NULL)
+            {
+                if (checked[aux->id] == -1)
+                {
+                    checked[aux->id] = count;
+                }
+                aux = aux->nseg;
+            }
+            free(aux);
+        }
+    }
+    return count;
+}
+
+/*
+resolução professor
+*/
+int partesProf(Nodo **G, int tv)
+{
+    int c = 1;
+    int *v = calloc(tv, sizeof(int));
+    Nodo *aux;
+    while (1)
+    {
+        for (int i = 0; i < tv; i++)
+        {
+            if (v[i] == 0)
+            {
+                break;
+            }
+            if (i == tv)
+            {
+                free(v);
+                return (c);
+            }
+            v[i] = c;
+            for (int j = 0; j < tv; j++)
+            {
+                if (v[j] != 0)
+                {
+                    continue;
+                }
+                aux = Dijkstra(G, tv, i, j);
+                if (aux != NULL)
+                {
+                    v[j] = c;
+                }
+                free(aux);
+            }
+        }
+        c++;
+    }
+    return c;
+}
+
 int main()
 {
     int t = 5;
@@ -144,6 +283,5 @@ int main()
     {
         printf("Grau Entrada vertice %d = %d\n", i, grauEntradaVertice(G, t, i));
     }
-
-    
+    printf("numero de grafos %d\n", parte(G, t));
 }

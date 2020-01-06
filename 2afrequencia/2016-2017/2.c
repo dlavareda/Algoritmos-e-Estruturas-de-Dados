@@ -131,6 +131,19 @@ NodoAB *cortaFolhas(NodoAB *A)
     return cortaFolhasAux(A, A);
 }
 
+void printNivel(NodoAB *A, int nivel)
+{
+    if (A == NULL)
+    {
+        return;
+    }
+    if (nivel == 0)
+    {
+        printf("%d\n", A->BI);
+    }
+    printNivel(A->fe, nivel - 1);
+    printNivel(A->fd, nivel - 1);
+}
 /*
 II-4 (3 valores) Implemente uma função que compare 2 árvores binárias e confirme se estas têm igual estrutura, isto é, independentemente do
 conteúdo de cada nó, o total de nós e a sua organização em ambas as árvores é ou não igual (1=sim, 0=não).
@@ -187,4 +200,6 @@ void main()
     nv = makenode(50, "Diogo", 40);
     AB2 = treeInsert(AB2, *nv);
     printf("\nCompare AB com AB2 check %d", igualEstrutura(AB, AB2));
+    printf("PRint nivel 1\n");
+    printf("%d", printNivel(AB, 1);)
 }
