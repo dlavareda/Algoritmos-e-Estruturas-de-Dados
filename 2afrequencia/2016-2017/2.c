@@ -58,12 +58,19 @@ void mostraClientes(NodoAB *A, int totMinutos)
     {
         return;
     }
-    mostraClientes(A->fe, totMinutos);
+    if (A->fe != NULL)
+    {
+
+        mostraClientes(A->fe, totMinutos);
+    }
     if (A->totalMinutos > totMinutos)
     {
         printf("%d\n", A->BI);
     }
-    mostraClientes(A->fd, totMinutos);
+    if (A->fd != NULL)
+    {
+        mostraClientes(A->fd, totMinutos);
+    }
 }
 
 /*
@@ -112,12 +119,12 @@ NodoAB *cortaFolhasAux(NodoAB *AB, NodoAB *ABORIGINAL)
         aux = getpai(AB, ABORIGINAL);
         if (aux->fe == AB)
         {
-            aux->fe = NULL;
+         //   aux->fe = NULL;
             free(AB);
         }
         else
         {
-            aux->fd = NULL;
+           // aux->fd = NULL;
             free(AB);
         }
         return NULL;
@@ -157,7 +164,7 @@ int igualEstrutura(NodoAB *A1, NodoAB *A2)
     }
     if (A1->fe && A2->fe && A1->fd && A2->fd)
     {
-        return 1 * igualEstrutura(A1->fe, A2->fe) * igualEstrutura(A1->fd, A2->fd);
+        return 1 x* igualEstrutura(A1->fe, A2->fe) * igualEstrutura(A1->fd, A2->fd);
     }
     else if (A1->fe && A2->fe && !A1->fd && !A2->fd)
     {
@@ -189,7 +196,7 @@ void main()
 
     mostraClientes(AB, 10);
     AB = cortaFolhas(AB);
-    printf("2");
+    printf("apos cortes");
     mostraClientes(AB, 10);
     printf("\nCompare AB com AB check %d", igualEstrutura(AB, AB));
 
@@ -201,5 +208,5 @@ void main()
     AB2 = treeInsert(AB2, *nv);
     printf("\nCompare AB com AB2 check %d", igualEstrutura(AB, AB2));
     printf("PRint nivel 1\n");
-    printf("%d", printNivel(AB, 1);)
+   // printf("%d", printNivel(AB, 1));
 }

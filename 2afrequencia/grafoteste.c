@@ -108,7 +108,8 @@ Nodo **constroi_grafo(int n)
     nv = makenode();
     nv->id = 'B';
     nv->custo = 2;
-    g[0] = insertlast(g[0], nv);
+    r
+        g[0] = insertlast(g[0], nv);
     nv = makenode();
     nv->id = 'C';
     nv->custo = 7;
@@ -233,7 +234,7 @@ resolução professor
 int partesProf(Nodo **G, int tv)
 {
     int c = 1;
-    int *v = calloc(tv, sizeof(int));
+    int *v = (int *)calloc(tv, sizeof(int));
     Nodo *aux;
     while (1)
     {

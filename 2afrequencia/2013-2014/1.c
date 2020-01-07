@@ -62,6 +62,7 @@ int contaFE(NodoAB *A)
     {
         return 1 + contaFE(A->fe) + contaFE(A->fd);
     }
+    return contaFE(A->fd);
 }
 int contaFD(NodoAB *A)
 {
@@ -73,6 +74,7 @@ int contaFD(NodoAB *A)
     {
         return 1 + contaFD(A->fe) + contaFD(A->fd);
     }
+    return contaFD(A->fe);
 }
 
 int maisFilhosActivos(NodoAB *A)

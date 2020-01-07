@@ -81,18 +81,12 @@ void listaNomes(NodoAB *A, int cod)
     {
         return;
     }
-    if (A->fe != NULL)
-    {
-        listaNomes(A->fe, cod);
-    }
+    listaNomes(A->fe, cod);
     if (A->codigo > cod)
     {
         printf("%s\n", A->nome);
     }
-    if (A->fd != NULL)
-    {
-        listaNomes(A->fd, cod);
-    }
+    listaNomes(A->fd, cod);
 }
 
 /*

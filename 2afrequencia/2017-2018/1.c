@@ -71,7 +71,7 @@ void imprimeVerticesMenosNPassos(NodoAB *A, int N)
     {
         return;
     }
-    if (N >= 0)
+    if (N > 1)
     {
         imprimeVerticesMenosNPassos(A->fd, N - 1);
         printf("%d\n", A->ID);
@@ -92,10 +92,7 @@ int todosIDsPositivos(NodoAB *A)
     {
         return 0;
     }
-    else
-    {
-        return todosIDsPositivos(A->fe) * todosIDsPositivos(A->fd);
-    }
+    return todosIDsPositivos(A->fe);
 }
 
 /*
@@ -240,6 +237,92 @@ int contaFolhas(NodoAB *AB)
     }
     return contaFolhas(AB->fe) + contaFolhas(AB->fd);
 }
+
+//contar
+
+int contaNos(NodoAB *A)
+{
+    if (A == NULL)
+    {
+        return 0;
+    }
+    return 1 + contaNos(A->fe) + contaNos(A->fd);
+}
+//true false
+int bemcontruida(NodoAB *A)
+{
+    if (A == NULL)
+    {
+        return 1;
+    }
+    if (A->fe != NULL && A->fd != NULL)
+    {
+        if (A->fe->ID < A->ID && A->fd->ID > A->ID)
+        {
+            return bemcontruida(A->fe) * bemcontruida(A->fd);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (A->fe != NULL)
+    {
+        if (A->fe->ID < A->ID)
+        {
+            return bemcontruida(A->fe);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (A->fd != NULL)
+    {
+        if (A->fd->ID > A->ID)
+        {
+            return bemcontruida(A->fd);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+//printar
+void printIDX(NodoAB *A, int n)
+{
+    if (A == NULL)
+    {
+        return;
+    }
+    if (A->ID == n)
+    {
+        printf("%s\n", A->aux);
+        return;
+    }
+    printIDX(A->fe, n);
+    printIDX(A->fd, n);
+}
+
+NodoAB* getX(NodoAB *A, int n){
+    if (A==NULL)
+    {
+        return;
+    }
+    if (A->ID == n)
+    {
+        return A;
+    }else{
+    return getX(A->fe, n);
+    return getX(A->fd, n);
+    }
+}
+
+//retornar no
+
 int main()
 {
     NodoAB *AB = NULL, *nv = NULL;
@@ -276,6 +359,10 @@ para um nó da árvore e retorne o nível do nó na árvore.
     NodoAB *item = findNode(AB, 8);
     printf("Nivel nó = %d\n", findNodeNaArvore(AB, item));
     printf("Numero de folhas  = %d", contaFolhas(AB));
-
+    printf("BEM CONSTRUIDA\n");
+    printf("%d\n", bemcontruida(AB));
+    printIDX(AB, 6);
+    NodoAB *x = getX(AB, 6);
+    //printf("blabsdabdas %d\n", getX(AB, 6)->ID);
     printf("pause");
 }
